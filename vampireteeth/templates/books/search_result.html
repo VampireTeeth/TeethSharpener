@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+{%block title%}Books|Result{%endblock%}
+
+{%block main%}
+<h3>The books matches '{{q}}':</h3>
+<ul>
+{%for book in books%}
+	<li><a href="/books/detail/{{book.id}}/">{{book.title}}</a></li>
+{%empty%}
+	<h2>No results found!</h2>
+{%endfor%}
+</ul>
+<a href="/books/">Search again?</a>
+{%endblock%}

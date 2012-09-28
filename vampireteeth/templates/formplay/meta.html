@@ -1,0 +1,11 @@
+{%extends "base.html"%}
+
+{%block title%}HTTP Meta Data{%endblock%}
+
+{%block main%}
+<ul>
+{%for k, v in meta.items%}
+	<li>{{k}}={{v}}</li>
+{%endfor%}
+</ul>
+{%endblock%}

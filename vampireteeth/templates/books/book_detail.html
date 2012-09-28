@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{%block title%}Books|Detail{%endblock%}
+
+{%block main%}
+<h3>Title:</h3>
+<h2>{{book.title}}</h2>
+<h3>Authors:</h3>
+<p>
+{%for author in book.authors.all%}
+<a href="/books/author/{{author.id}}/">{{author.first_name}} {{author.last_name}}</a>
+{%if not forloop.last%}|{%endif%}
+{%empty%}
+No authors.
+{%endfor%}
+</p>
+<h3>Publisher:</h3>
+<p>
+<a href="{{book.publisher.website}}/">{{book.publisher.name}}</a>
+</p>
+<p>{{book.publisher.address}} {{book.publisher.city}} {{book.publisher.state}} {{book.publisher.country}}</p>
+<a href="/books/">Search again?</a>
+{%endblock%}

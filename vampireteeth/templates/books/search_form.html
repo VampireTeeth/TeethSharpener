@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block title%}Books|Search{%endblock%}
+
+{%block main%}
+{%if error_message %}
+<p>{{error_message}}</p>
+{%endif%}
+<form action="/books/search/" method="get">
+	<input type="text" name="q"/>
+	<input type="submit" value="Search"/>
+</form>
+{%endblock%}
