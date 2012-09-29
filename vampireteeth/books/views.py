@@ -29,13 +29,6 @@ def detail(request, book_id):
   return render_to_response(get_template('book_detail.html'),
                             {'book':book})
 
-
-
-def fetch_contact_info(request):
-  return (request.POST.get('subject', ''),
-          request.POST.get('email', ''),
-          request.POST.get('message', ''),
-          )
   
 def contact(request):
   
