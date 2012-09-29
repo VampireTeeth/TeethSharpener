@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from books.models import Book
+from books.forms import ContactForm
 
 
 def get_template(page):
@@ -37,34 +38,18 @@ def fetch_contact_info(request):
           )
   
 def contact(request):
-  if request.method == 'GET':
-    return render_to_response(get_template('contact_form.html'), 
-                              context_instance=RequestContext(request))
   
   if request.method == 'POST':
-    errors = []
-    subject, email, message = fetch_contact_info(request)
-    
-    if not subject:
-      errors.append('Please enter the subject.')
-    if not message:
-      errors.append('Please enter the message.')
-    if email and '@' not in email:
-      errors.append('Please input a valid e-mail address.')
-    if errors:
-      return render_to_response(get_template('contact_form.html'),
-                                {'errors':errors,
-                                 'subject':subject,
-                                 'email':email,
-                                 'message':message,
-                                 }, 
+    form = ContactForm(request.POST)
+    if form.is_valid():
+      cd = form.cleaned_data
+#      send_mail(cd['subject'], cd['message'], cd.get('email', 'noreply@gmail.com'), ['steven.weike.liu@gmail.com'])
+      return HttpResponseRedirect(reverse(thanks))
+  else:
+    form = ContactForm()
+  return render_to_response(get_template('contact_form.html'),
+                                {'form':form}, 
                                 context_instance=RequestContext(request))
-    
-    recipient_list = ['steven.weike.liu@gmail.com']
-    if not email:
-      email = 'noreply@gmail.com'
-#    send_mail(subject, message, email, recipient_list)
-    return HttpResponseRedirect(reverse(thanks))
     
 def thanks(request):
   return render_to_response(get_template('contact_thanks.html'))
