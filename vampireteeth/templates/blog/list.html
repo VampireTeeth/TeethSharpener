@@ -1,33 +1,25 @@
 {%extends "blog/bbase.html"%}
 
 {%block content%}
-	<div class="main">
-		<!-- POSTS -->
+	<div id="recent-posts">
+		
+		<h2>Recent Posts</h2>
+		<div style="clear: both; height: 40px;">&nbsp;</div>
+		{%include 'blog/pages.html'%}
+		<div style="clear: both; height: 40px;">&nbsp;</div>
 		<ul>
-			{%for post in posts.object_list%}
-			<div class="title"><a href="{%url 'blog.views.post' post.id%}">{{post.title}}</a></div>
-			<ul>
-				<div class="time">{{post.created}}</div>
-				<div class="body">{{post.body|linebreaks}}</div>
-			</ul>
+			{%for post in pages.object_list%}
+			<li>
+				<h3><a href="{%url 'blog.views.post' post.id%}">{{post.title}}</a></h3>
+				<p class="byline"><span>Posted on {{post.created}}</span></p>
+				<p>{{post.body|linebreaks}}</p>
+			</li>
 			{%endfor%}
 		</ul>
+		<div style="clear: both; height: 40px;">&nbsp;</div>
+		{%include 'blog/pages.html'%}
+		<div style="clear: both; height: 40px;">&nbsp;</div>
 	</div>
 	
-	<!-- Next/Prev page links -->
-	{%if posts.object_list and posts.paginator.numpages > 1%}
-	<div class="paginator" style="margin-top: 20px; margin-left: -20px;">	
-		<span class="step-links">
-		{%if posts.paginator.has_previous%}
-		<a href="?page={{posts.paginator.previous_page_number}}">Newer entries &lt;&lt;</a>
-		<span class="current">
-		&nbsp; Page {{posts.number}} of {{posts.paginator.num_pages}}
-		</span>
-		{%endif%}
-		</span>
-		{%if posts.paginator.has_next%}
-		<a href="?page={{posts.paginator.next_page_number}}">&gt;&gt Older entries</a>
-		{%endif%}
-	</div>
-	{%endif%}
+	
 {%endblock%}

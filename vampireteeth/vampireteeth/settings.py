@@ -64,10 +64,14 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
+import os
+blog_static = os.path.dirname(os.path.dirname(__file__))
+blog_static= os.path.join(blog_static, 'static').replace('\\','/')
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    blog_static,
 )
 
 # List of finder classes that know how to find static files in
@@ -103,9 +107,8 @@ ROOT_URLCONF = 'vampireteeth.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'vampireteeth.wsgi.application'
 
-import os
 prj_dir = os.path.dirname(os.path.dirname(__file__))
-template_dir = os.path.join(prj_dir, 'templates')
+template_dir = os.path.join(prj_dir, 'templates').replace('\\','/')
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

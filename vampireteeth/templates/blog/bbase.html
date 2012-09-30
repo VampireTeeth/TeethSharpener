@@ -2,26 +2,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/static/blog/style.css" type="text/css"
+	charset="UTF-8" />
 <title>{%block title%}MyBlog{%endblock%}</title>
 </head>
 <body>
-	<div id="sidebar">{%block sidebar%}{%endblock%}</div>
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<a href="{%url 'blog.views.main'%}">MyBlog</a>
+			</h1>
+			<h2>By Steven Liu</h2>
+		</div>
+	</div>
 	<div id="container">
 		<div id="menu">
-		{%block nav-global%}
-		 <!-- MENU -->
-			 <h3>MyBlog</h3>
-			 <a href="{%url 'blog.views.main'%}">Home</a>
-			 {%if user.is_staff%}
-			 <a href="{%url 'admin:index'%}">Admin</a>
-			 <a href="{%url 'admin:blog_post_add'%}">Add post</a>
-			 {%endif%}
-		{%endblock%}
+			{%block nav-global%}
+			<!-- MENU -->
+
+			<a href="{%url 'blog.views.main'%}">Home</a> 
+			{%if user.is_staff%} 
+			<a href="{%url 'admin:index'%}">Admin</a> 
+			<a href="{%url 'admin:blog_post_add'%}">Add post</a> 
+			{%endif%}
+			{%endblock%}
 		</div>
-		
-		<div id="content">
-		{%block content%}{%endblock%}
-		</div>
+
+		<div id="sidebar">{%block sidebar%}{%endblock%}</div>
+		<div id="content">{%block content%}{%endblock%}</div>
+	</div>
+	<div id="footer">
+		<p>&nbsp;</p>
 	</div>
 </body>
 </html>

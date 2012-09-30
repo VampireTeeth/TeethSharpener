@@ -1,7 +1,8 @@
 {%extends "blog/bbase.html"%}
 
 {%block content%}
-	<div class="title">{{post.title}}</div>
+	<div id="post-detail">
+	<h2>{{post.title}}</h2>
 	
 	<ul>
 		<div class="time">{{post.created}}</div>
@@ -25,4 +26,5 @@
 		</table>
 		<input type="submit" value="Submit"/>
 	</form>
+	</div>
 {%endblock%}

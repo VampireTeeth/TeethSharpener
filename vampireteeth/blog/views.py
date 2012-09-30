@@ -16,7 +16,7 @@ blog_templates = 'blog/'
 def main(request):
   '''Main listing.'''
   posts = Post.objects.all().order_by('-created')
-  paginator = Paginator(posts, 2)
+  paginator = Paginator(posts, 6)
   
   
   try:
@@ -29,9 +29,11 @@ def main(request):
   except (InvalidPage, EmptyPage):
     posts = paginator.page(paginator.num_pages)
   
+  indexes = [i+1 for i in range(paginator.num_pages) if abs(posts.number - i) <= 5]
   return render_to_response(blog_templates+'list.html',
-                            {'posts' : posts, 
-                             'user' : request.user})
+                            {'pages' : posts, 
+                             'user' : request.user,
+                             'indexes' : indexes})
   
 def post(request, pk):
   """Single post with comments and comment form"""

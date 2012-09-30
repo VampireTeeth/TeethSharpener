@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: black;
+	font-family: monospace;
+	color:lime;
+}
+
+#container{
+	background-color: gray;
+	width: 1200px;
+	vertical-align: middle;
+}
+
+#menu
+{
+	
+}
+h3{
+	font-size:14pt;
+}
+a{
+	color:lime;
+	font-weight: bold;
+	font-size:12pt;
+	text-decoration: none;
+}
+
+a:HOVER {
+	color:purple;
+}
