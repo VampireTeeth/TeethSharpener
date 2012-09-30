@@ -289,7 +289,8 @@ hr {
 }
 
 #recent-posts h2,
-#post-detail h2 {
+#post-detail h2,
+#post-detail #addc {
 	margin: 0;
 	padding: 10px 0 10px 15px;
 	background: #BBB082;
@@ -354,6 +355,20 @@ hr {
 #recent-posts p {
 	padding: 0;
 	margin: 0;
+}
+
+
+#post-detail div.comment,
+#post-detail div.time,
+#post-detail div.body p
+{
+	margin: 0;
+	padding: 0;
+}
+#post-detail div.comment
+{
+	border-top: solid 1px activecaption;
+	margin: 10px 0 0 0;
 }
 
 
