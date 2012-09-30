@@ -1,0 +1,25 @@
+{%if pages.object_list and pages.paginator.num_pages > 1%}
+<div class="paginator">	
+	<span class="step-links">
+		<span>
+		{%if pages.has_previous%}
+		<a href="?page={{pages.previous_page_number}}">Prev</a>
+		{%endif%}
+		{%if not pages.has_previous%}Prev{%endif%}
+		</span>
+		<span>
+		{%for index in indexes%}
+		{%ifnotequal index pages.number%}<a href="?page={{index}}">
+		{%endifnotequal%}[{{index}}]{%ifnotequal index pages.number%}</a>
+		{%endifnotequal%}
+		{%endfor%}
+		</span>
+		<span>
+		{%if pages.has_next%}
+		<a href="?page={{pages.next_page_number}}">Next</a>
+		{%endif%}
+		{%if not pages.has_next%}Next{%endif%}
+		</span>
+	</span>
+</div>
+{%endif%}
