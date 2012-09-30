@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{%block title%}MyBlog{%endblock%}</title>
+</head>
+<body>
+	<div id="sidebar">{%block sidebar%}{%endblock%}</div>
+	<div id="container">
+		<div id="menu">
+		{%block nav-global%}
+		 <!-- MENU -->
+			 <h3>MyBlog</h3>
+			 <a href="{%url 'blog.views.main'%}">Home</a>
+			 {%if user.is_staff%}
+			 <a href="{%url 'admin:index'%}">Admin</a>
+			 <a href="{%url 'admin:blog_post_add'%}">Add post</a>
+			 {%endif%}
+		{%endblock%}
+		</div>
+		
+		<div id="content">
+		{%block content%}{%endblock%}
+		</div>
+	</div>
+</body>
+</html>

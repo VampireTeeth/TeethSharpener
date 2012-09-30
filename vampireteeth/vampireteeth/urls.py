@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^todo/', include('todo.urls')),
     url(r'^formplay/', include('formplay.urls')),
     url(r'^books/', include('books.urls')),
+    url(r'^blog/', include('blog.urls')),
     
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'todo',
     'formplay',
     'books',
+    'blog',
 )
 
 # A sample logging configuration. The only tangible logging
