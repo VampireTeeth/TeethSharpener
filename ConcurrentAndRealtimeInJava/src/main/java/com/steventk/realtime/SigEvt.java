@@ -29,6 +29,9 @@ public class SigEvt extends RealtimeThread{
         event.addHandler(handler);
         event.bindTo("25");
         event.fire();
+        event.fire();
+        event.fire();
+        event.fire();
         try {
             Thread.sleep(1000);
         }catch(InterruptedException ign) {}
