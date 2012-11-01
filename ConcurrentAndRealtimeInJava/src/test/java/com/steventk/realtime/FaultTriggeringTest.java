@@ -3,7 +3,6 @@ package com.steventk.realtime;
 import javax.realtime.AsyncEvent;
 import javax.realtime.AsyncEventHandler;
 import javax.realtime.PriorityParameters;
-import javax.realtime.PriorityScheduler;
 import javax.realtime.RealtimeThread;
 import javax.realtime.SchedulingParameters;
 
