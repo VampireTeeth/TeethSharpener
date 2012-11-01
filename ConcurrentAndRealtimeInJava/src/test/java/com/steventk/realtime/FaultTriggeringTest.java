@@ -19,22 +19,24 @@ public class FaultTriggeringTest {
 	
 	static class FaultTriggeredRTThread extends RealtimeThread{
 
+		private int maxPriority = 0;
 		@Override
 		public void run() {
 			AsyncEventHandler handler = new FaultTriggerAEH();
 			AsyncEvent event = new AsyncEvent();
 			RealtimeThread thisThread = RealtimeThread.currentRealtimeThread();
-			int maxPriority = PriorityScheduler.getMaxPriority(thisThread);
-			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 3);
+			maxPriority = thisThread.getPriority();
+			System.out.println("maxPriority = " + maxPriority);
+			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 4);
 			handler.setSchedulingParameters(scheduling);
 			event.addHandler(handler);
-			process1(event, maxPriority);
+			process1(event);
 			event.removeHandler(handler);
 		}
 		
-		private void process1(AsyncEvent event, int maxPriority) {
+		private void process1(AsyncEvent event) {
 			AsyncEventHandler handler = new Process1AEH();
-			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 4);
+			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 3);
 			handler.setSchedulingParameters(scheduling);
 			event.addHandler(handler);
 			process2(event);
