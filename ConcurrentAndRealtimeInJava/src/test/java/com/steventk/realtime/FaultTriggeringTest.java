@@ -10,10 +10,14 @@ import javax.realtime.SchedulingParameters;
 public class FaultTriggeringTest {
 
 	public static void main(String[] args) {
-		
+		RealtimeThread rt = new FaultTriggeredRTThread();
+		rt.start();
+		try{
+			rt.join();
+		}catch(InterruptedException e) {}
 	}
 	
-	static class FaultTriggeredRTThread implements Runnable{
+	static class FaultTriggeredRTThread extends RealtimeThread{
 
 		@Override
 		public void run() {
@@ -24,12 +28,23 @@ public class FaultTriggeringTest {
 			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 3);
 			handler.setSchedulingParameters(scheduling);
 			event.addHandler(handler);
-			process1(event);
+			process1(event, maxPriority);
 			event.removeHandler(handler);
 		}
 		
-		private void process1(AsyncEvent event) {
-			
+		private void process1(AsyncEvent event, int maxPriority) {
+			AsyncEventHandler handler = new Process1AEH();
+			SchedulingParameters scheduling = new PriorityParameters(maxPriority - 4);
+			handler.setSchedulingParameters(scheduling);
+			event.addHandler(handler);
+			process2(event);
+			event.removeHandler(handler);
+		}
+		
+		private void process2(AsyncEvent event) {
+			//something bad happened here
+			//fire the event
+			event.fire();
 		}
 		
 	}
@@ -38,6 +53,13 @@ public class FaultTriggeringTest {
 		@Override
 		public void handleAsyncEvent() {
 			System.out.println("Run method: notified");
+		}
+	}
+	
+	static class Process1AEH extends AsyncEventHandler {
+		@Override
+		public void handleAsyncEvent() {
+			System.out.println("process1 method: notified");
 		}
 	}
 }
