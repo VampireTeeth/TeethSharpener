@@ -10,7 +10,7 @@ import org.junit.Test;
 public class EntityManagerTest {
 
     @Test
-    public void testInstantiation() throws Exception {
+    public void testInstantiationOfEntityManager() throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("mydb-manager");
         Assert.assertNotNull(emf);
     }
