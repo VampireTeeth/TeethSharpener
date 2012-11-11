@@ -7,21 +7,33 @@ import javax.persistence.Persistence;
 
 import junit.framework.Assert;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class EntityManagerTest {
 
-    private static final String EMF_NAME = "mydb-manager";
+    protected static final String EMF_NAME = "mydb-manager";
     
-    private EntityManagerFactory emf;
-    private EntityManager em;
+    protected static EntityManagerFactory emf;
+    protected EntityManager em;
     
-    @Before
-    public void setUp() throws Exception {
-        this.emf = Persistence.createEntityManagerFactory(EMF_NAME);
-        this.em = this.emf.createEntityManager();
+    @BeforeClass
+    public static void beforeClassSetUp() throws Exception {
+        emf = Persistence.createEntityManagerFactory(EMF_NAME);
     }
+    
+    @Before 
+    public void setUp() throws Exception {
+        em = emf.createEntityManager();
+    }
+    
+    @After
+    public void tearDown() throws Exception {
+        em.close();
+    }
+    
     @Test
     public void testInstantiationOfEntityManager() throws Exception {
         Assert.assertNotNull(emf);
@@ -35,9 +47,7 @@ public class EntityManagerTest {
         tx.begin();
         em.persist(category);
         tx.commit();
-        em.close();
         Assert.assertNotNull(category.getId());
-        Assert.assertEquals(new Long(1), category.getId());
         Assert.assertNotNull(category.getLastModified());
     }
     
