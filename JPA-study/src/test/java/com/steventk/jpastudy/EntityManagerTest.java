@@ -39,6 +39,7 @@ public class EntityManagerTest {
         Assert.assertNotNull(emf);
     }
     
+    
     @Test
     public void testCategoryEntity() throws Exception {
         Category category = new Category();
