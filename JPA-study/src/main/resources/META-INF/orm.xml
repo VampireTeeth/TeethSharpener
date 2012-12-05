@@ -9,7 +9,6 @@
 	</persistence-unit-metadata>
 	<package>com.steventk.jpastudy</package>
 	
-	
 	<entity class="Category">
 		<table name="CATEGORY"/>
 		<pre-persist method-name="updateTimestamps"/>
@@ -23,7 +22,9 @@
 			</basic>
 		</attributes>
 	</entity>
+	
 	<entity class="User">
+		<table name="`USER`"/>
 		<attributes>
 			<id name="id">
 				<column name="USER_ID"/>
@@ -60,4 +61,38 @@
 			</embedded>
 		</attributes>
 	</entity>
+
+	<entity class="BeanWithCompositeKey" access="FIELD">
+		<table name="`TABLE_WITH_COMPOSITE_KEY`">
+			<unique-constraint>
+				<column-name>`KEY1`</column-name>
+				<column-name>`KEY2`</column-name>
+			</unique-constraint>
+		</table>
+		<attributes>
+			<embedded-id name="key">
+				<attribute-override name="key1">
+					<column name="`KEY1`"/>
+				</attribute-override>
+				<attribute-override name="key2">
+					<column name="`KEY2`"/>
+				</attribute-override>
+			</embedded-id>
+			<basic name="name">
+				<column name="`NAME`"/>
+			</basic>
+		</attributes>
+	</entity>
+	
+	<embeddable class="CompositeKeyPK">
+		<attributes>
+			<basic name="key1">
+				<column name="`KEY1`"/>
+			</basic>
+			<basic name="key2">
+				<column name="`KEY2`"/>
+			</basic>
+		</attributes>
+	</embeddable>
+	
 </entity-mappings>
