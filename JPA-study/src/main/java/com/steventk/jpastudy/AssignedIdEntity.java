@@ -9,10 +9,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="`ASSIGNED_ID_ENTITY`")
 public class AssignedIdEntity {
-
 	private Long id;
 	private String name;
-
+	
 	@Id
 	@Column(name="`ID`", nullable=false, length=3)
 	public Long getId() {
