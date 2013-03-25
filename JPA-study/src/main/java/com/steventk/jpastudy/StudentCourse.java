@@ -9,10 +9,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "`STUDENT_COURSE`")
+@Table(name = "STUDENT_COURSE")
 @AssociationOverrides({
-	@AssociationOverride(name = "pk.student", joinColumns = @JoinColumn(name = "`STUDENT_ID`")),
-	@AssociationOverride(name = "pk.course", joinColumns = @JoinColumn(name = "`COURSE_ID`"))
+	@AssociationOverride(name = "pk.student", joinColumns = @JoinColumn(name = "STUDENT_ID")),
+	@AssociationOverride(name = "pk.course", joinColumns = @JoinColumn(name = "COURSE_ID"))
 })
 public class StudentCourse {
 

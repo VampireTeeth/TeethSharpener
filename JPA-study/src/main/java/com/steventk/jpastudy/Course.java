@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`COURSE`")
+@Table(name = "COURSE")
 public class Course {
 
 	private Long id;
@@ -23,7 +23,7 @@ public class Course {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "`COURSE_ID`")
+	@Column(name = "COURSE_ID")
 	public Long getId() {
 		return id;
 	}
@@ -31,7 +31,7 @@ public class Course {
 		this.id = id;
 	}
 	
-	@Column(name = "`COURSE_NAME`")
+	@Column(name = "COURSE_NAME")
 	public String getName() {
 		return name;
 	}
@@ -39,7 +39,7 @@ public class Course {
 		this.name = name;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.course", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	public List<StudentCourse> getStudents() {
 		return students;
 	}

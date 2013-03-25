@@ -12,7 +12,9 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/mydb" />
 			<property name="javax.persistence.jdbc.user" value="steven" />
 			<property name="javax.persistence.jdbc.password" value="steven" />
+			<!--  
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			-->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

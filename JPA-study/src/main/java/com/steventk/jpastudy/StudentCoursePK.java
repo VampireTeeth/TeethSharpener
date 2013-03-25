@@ -3,6 +3,7 @@ package com.steventk.jpastudy;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Embeddable
@@ -14,7 +15,7 @@ public class StudentCoursePK implements Serializable{
 	
 	private Course course;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Student getStudent() {
 		return student;
 	}
@@ -23,7 +24,7 @@ public class StudentCoursePK implements Serializable{
 		this.student = student;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Course getCourse() {
 		return course;
 	}
